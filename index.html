@@ -48,54 +48,72 @@
 
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzijzmHdyCfeXJYS3e_QQZIheNM12EdOyV4BXr_48CsYsLXl5M7rxnG35ChW8E6ijPNhg/exec";
-onst form = document.getElementById("form");
+
+const form = document.getElementById("form");
 const nama = document.getElementById("nama");
 const jemaat = document.getElementById("jemaat");
 const tbody = document.getElementById("tbody");
 
-async function muatData(){
+async function muatData() {
   tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Memuat data...</td></tr>";
   try {
     const res = await fetch(SCRIPT_URL);
     const data = await res.json();
-    if(!data.length){
+    if (!data.length) {
       tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Belum ada peserta.</td></tr>";
       return;
     }
-    tbody.innerHTML = data.map((d,i)=>`
+    tbody.innerHTML = data.map((d, i) => `
       <tr>
-        <td>${i+1}</td>
+        <td>${i + 1}</td>
         <td>${d.nama}</td>
         <td>${d.jemaat}</td>
       </tr>`).join('');
   } catch (err) {
-    console.error(err);
+    console.error("Gagal memuat data:", err);
     tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:red;'>Gagal memuat data</td></tr>";
   }
 }
 
 form.addEventListener("submit", async e => {
   e.preventDefault();
-  const data = {nama:nama.value.trim(), jemaat:jemaat.value};
+  const data = {
+    nama: nama.value.trim(),
+    jemaat: jemaat.value
+  };
+
   try {
+    // Gunakan FormData agar lebih kompatibel dengan Apps Script
+    const formData = new FormData();
+    formData.append("nama", data.nama);
+    formData.append("jemaat", data.jemaat);
+
     const res = await fetch(SCRIPT_URL, {
-      method:"POST",
-      body: JSON.stringify(data),
-      headers: {"Content-Type":"application/json"}
+      method: "POST",
+      body: formData
     });
+
     const text = await res.text();
-    console.log("Response:", text);
-    form.reset();
-    muatData(); // refresh daftar setelah submit
+    console.log("Respon server:", text);
+
+    if (text.includes("OK")) {
+      form.reset();
+      muatData(); // refresh daftar
+    } else {
+      alert("Gagal menyimpan data!");
+    }
   } catch (err) {
-    console.error(err);
-    alert("Gagal kirim data");
+    console.error("Gagal kirim data:", err);
+    alert("Terjadi kesalahan saat menyimpan data.");
   }
 });
 
 muatData();
 </script>
+
+</script>
 </body>
 </html>
+
 
 
