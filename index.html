@@ -1,21 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pendaftaran Lomba Domino Jemaat GKE</title>
+<title>Pendaftaran Lomba Domino GKE</title>
 <style>
-  body{font-family:sans-serif;background:#f8fafc;margin:0;color:#1f2937}
-  .container{max-width:700px;margin:30px auto;background:#fff;padding:24px;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-  h1{text-align:center;margin-top:0}
-  form{display:grid;gap:10px;margin-bottom:20px}
-  input,select,button{padding:10px;border-radius:8px;border:1px solid #d1d5db}
-  button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer}
-  button:hover{opacity:.9}
-  table{width:100%;border-collapse:collapse}
-  th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left}
-  th{background:#f1f5f9}
-  tr:nth-child(even){background:#f9fafb}
+  body { font-family: sans-serif; background: #f8fafc; margin: 0; color: #1f2937; }
+  .container { max-width: 700px; margin: 30px auto; background: #fff; padding: 24px;
+                border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,.1);}
+  h1 { text-align: center; margin-top: 0; }
+  form { display: grid; gap: 10px; margin-bottom: 20px; }
+  input, select, button { padding: 10px; border-radius: 8px; border: 1px solid #d1d5db; }
+  button { background: #2563eb; color: #fff; font-weight: 600; border: none; cursor: pointer; }
+  button:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -23,14 +20,11 @@
   <h1>Pendaftaran Lomba Domino Hari Bapak GKE 2025</h1>
   <h1>CARES GKE TAMIANG LAYANG UTARA</h1>
 
-  <!-- POST langsung ke Apps Script -->
-  <form
-    action="https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec"
-    method="POST"
-    target="hidden_iframe"
-    onsubmit="return kirimData();">
-    <input name="nama" id="nama" placeholder="Nama peserta" required />
-    <select name="jemaat" id="jemaat" required>
+  <!-- Form langsung kirim ke Google Script -->
+  <form action="https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec" 
+        method="POST" target="hidden_iframe" onsubmit="return kirim();">
+    <input name="nama" placeholder="Nama peserta" required />
+    <select name="jemaat" required>
       <option value="">-- Pilih Asal Jemaat --</option>
       <option>Jemaat GKE Yerusalem Tamiang Layang</option>
       <option>Jemaat GKE Sumur</option>
@@ -41,54 +35,22 @@
     </select>
     <button type="submit">Tambah</button>
   </form>
-  <iframe name="hidden_iframe" style="display:none"></iframe>
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
 
-  <table>
-    <thead>
-      <tr><th>No</th><th>Nama</th><th>Asal Jemaat</th></tr>
-    </thead>
-    <tbody id="tbody">
-      <tr><td colspan="3" style="text-align:center;color:#9ca3af;">Memuat data...</td></tr>
-    </tbody>
-  </table>
+  <p style="text-align:center;color:green;font-weight:600;" id="status"></p>
+
+  <!-- Tampilan data -->
+  <h3>Daftar Peserta:</h3>
+  <iframe id="sheetview" 
+    src="https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_HERE/pubhtml?widget=true&amp;headers=false" 
+    style="width:100%;height:400px;border:1px solid #ccc;border-radius:10px;"></iframe>
 </div>
 
 <script>
-  // URL untuk BACA data (lewat proxy agar aman dari CORS)
-  const READ_URL = "https://corsproxy.io/?https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec";
-
-  async function muatData(){
-    const tbody = document.getElementById("tbody");
-    tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Memuat data...</td></tr>";
-    try{
-      const res = await fetch(READ_URL);
-      const data = await res.json(); // harus JSON dari doGet()
-      if(!data.length){
-        tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Belum ada peserta.</td></tr>";
-        return;
-      }
-      tbody.innerHTML = data.map((d,i)=>`
-        <tr>
-          <td>${i+1}</td>
-          <td>${d.nama}</td>
-          <td>${d.jemaat}</td>
-        </tr>`).join('');
-    }catch(err){
-      console.error("Gagal memuat data:", err);
-      tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#ef4444;'>Gagal memuat data</td></tr>";
-    }
-  }
-
-  function kirimData(){
-    alert("Data berhasil dikirim! Tunggu 3–5 detik lalu refresh/lihat tabel.");
-    // reload tabel beberapa detik kemudian supaya data sudah sempat masuk ke sheet
-    setTimeout(muatData, 4000);
-    return true; // lanjutkan submit form normal
-  }
-
-  muatData();
+function kirim() {
+  document.getElementById("status").innerText = "Data terkirim! Silakan refresh untuk melihat di daftar.";
+  return true;
+}
 </script>
 </body>
 </html>
-
-
