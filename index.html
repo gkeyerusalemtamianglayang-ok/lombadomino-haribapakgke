@@ -76,28 +76,27 @@ async function muatData() {
   }
 }
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", async e => {
   e.preventDefault();
-  const formData = new FormData();
-  formData.append("nama", nama.value.trim());
-  formData.append("jemaat", jemaat.value);
+  const data = {nama: nama.value.trim(), jemaat: jemaat.value};
 
-  try {
-    const res = await fetch(SCRIPT_URL, { method: "POST", body: formData });
-    const text = await res.text();
-    console.log("Respon server:", text);
-    form.reset();
-    muatData();
-  } catch (err) {
-    console.error("Gagal kirim data:", err);
-    alert("Terjadi kesalahan saat menyimpan data.");
-  }
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",  // ✅ penting
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `nama=${encodeURIComponent(data.nama)}&jemaat=${encodeURIComponent(data.jemaat)}`
+  });
+
+  alert("Data berhasil dikirim! Silakan refresh halaman.");
+  form.reset();
 });
+
 
 muatData();
 </script>
 </body>
 </html>
+
 
 
 
