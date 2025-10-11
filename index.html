@@ -7,7 +7,7 @@
 <link rel="icon" href="data:,">
 <style>
   body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     background: #f8fafc;
     margin: 0;
     color: #1f2937;
@@ -21,7 +21,16 @@
     box-shadow: 0 4px 16px rgba(0,0,0,.08);
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
   }
+  .container.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Logo GKE transparan */
   .logo-bg {
     display: block;
     margin: 0 auto 10px auto;
@@ -29,52 +38,98 @@
     height: auto;
     opacity: 0.35;
     pointer-events: none;
+    animation: fadein 2s ease;
   }
+
   .pamflet {
     width: 100%;
     border-radius: 12px;
     margin: 15px 0;
     display: block;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 1s ease, transform 1s ease;
   }
+  .pamflet.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   h1 {
     text-align: center;
     margin: 0 0 10px;
+    animation: fadein 2s ease;
   }
+
   form {
     display: grid;
-    gap: 10px;
-    margin: 18px 0;
+    gap: 12px;
+    margin: 20px 0;
   }
-  input, select, button {
-    padding: 10px;
+
+  /* 🎨 Styling kolom input agar kontras & elegan */
+  input, select {
+    padding: 12px;
     border-radius: 8px;
-    border: 1px solid #d1d5db;
+    border: 2px solid #2563eb;
+    background: #f0f4ff;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    outline: none;
   }
+
+  input:focus, select:focus {
+    border-color: #fbbf24;
+    background: #fffbe6;
+    box-shadow: 0 0 10px rgba(251,191,36,0.4);
+  }
+
+  input::placeholder {
+    color: #6b7280;
+  }
+
+  select {
+    color: #111827;
+  }
+
   button {
-    background: #2563eb;
+    padding: 12px;
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
     color: #fff;
     font-weight: 600;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
   }
-  button:hover { opacity: .9; }
+  button:hover {
+    background: linear-gradient(90deg, #1e40af, #2563eb);
+    transform: scale(1.02);
+  }
+
   h3 { margin-top: 24px; text-align: center; }
+
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container" id="content">
   <img class="logo-bg" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/LOGO_GKE.png" alt="Logo GKE">
+
   <h1>Pendaftaran Lomba Domino Hari Bapak GKE 2025</h1>
   <h1>CARES GKE TAMIANG LAYANG UTARA</h1>
 
   <!-- 🔹 PAMFLET -->
-  <img src="pamflet.jpg" alt="Pamflet Hari Bapak GKE" class="pamflet" loading="lazy">
+  <img src="pamflet.jpg" alt="Pamflet Hari Bapak GKE" class="pamflet" id="pamflet" loading="lazy">
 
   <form action="https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec" 
         method="POST" target="hidden_iframe" onsubmit="return kirim();">
-    <input name="nama" placeholder="Nama peserta" required />
+    <input name="nama" placeholder="🧍 Nama peserta" required />
     <select name="jemaat" required>
-      <option value="">-- Pilih Asal Jemaat --</option>
+      <option value="">🏠 -- Pilih Asal Jemaat --</option>
       <option>Jemaat GKE Yerusalem Tamiang Layang</option>
       <option>Jemaat GKE Sumur</option>
       <option>Jemaat GKE Jaweten</option>
@@ -101,6 +156,13 @@ function kirim(){
     '✅ Data berhasil dikirim! Tunggu 3–5 detik lalu refresh untuk melihat hasil.';
   return true;
 }
+
+window.addEventListener('load', () => {
+  document.getElementById('content').classList.add('show');
+  setTimeout(() => {
+    document.getElementById('pamflet').classList.add('show');
+  }, 600);
+});
 </script>
 </body>
 </html>
