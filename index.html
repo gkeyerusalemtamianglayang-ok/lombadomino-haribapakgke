@@ -76,13 +76,41 @@ async function muatData() {
   }
 }
 
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-  const data = {nama: nama.value.trim(), jemaat: jemaat.value};
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzijzmHdyCfeXJYS3e_QQZIheNM12EdOyV4BXr_48CsYsLXl5M7rxnG35ChW8E6ijPNhg/exec"; // pakai URL lama (yang ke Google Sheet langsung)
+const form = document.getElementById("form");
+const nama = document.getElementById("nama");
+const jemaat = document.getElementById("jemaat");
+const tbody = document.getElementById("tbody");
 
+async function muatData() {
+  try {
+    const res = await fetch(SCRIPT_URL);
+    const data = await res.json();
+    if (!data.length) {
+      tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Belum ada peserta.</td></tr>";
+      return;
+    }
+    tbody.innerHTML = data.map((d,i)=>`
+      <tr>
+        <td>${i+1}</td>
+        <td>${d.nama}</td>
+        <td>${d.jemaat}</td>
+      </tr>`).join('');
+  } catch (err) {
+    tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#ef4444;'>Gagal memuat data</td></tr>";
+    console.error("Gagal memuat data:", err);
+  }
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const data = { nama: nama.value.trim(), jemaat: jemaat.value };
+
+  // ✅ Mode no-cors supaya tidak diblokir browser
   fetch(SCRIPT_URL, {
     method: "POST",
-    mode: "no-cors",  // ✅ penting
+    mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `nama=${encodeURIComponent(data.nama)}&jemaat=${encodeURIComponent(data.jemaat)}`
   });
@@ -91,11 +119,16 @@ form.addEventListener("submit", async e => {
   form.reset();
 });
 
+muatData();
+</script>
+
+
 
 muatData();
 </script>
 </body>
 </html>
+
 
 
 
