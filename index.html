@@ -1,147 +1,164 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pendaftaran Lomba Domino Jemaat GKE</title>
-<style>
-  body{font-family:sans-serif;background:#f8fafc;margin:0;color:#1f2937;}
-  .container{max-width:700px;margin:30px auto;background:#fff;padding:24px;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.1);}
-  h1{text-align:center;margin-top:0;}
-  form{display:grid;gap:10px;margin-bottom:20px;}
-  input,select,button{padding:10px;border-radius:8px;border:1px solid #d1d5db;}
-  button{background:#2563eb;color:#fff;font-weight:600;border:none;cursor:pointer;}
-  button:hover{opacity:.9;}
-  table{width:100%;border-collapse:collapse;}
-  th,td{border-bottom:1px solid #e5e7eb;padding:8px;text-align:left;}
-  th{background:#f1f5f9;}
-  tr:nth-child(even){background:#f9fafb;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendaftaran Lomba Domino Hari Bapak GKE 2025</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      color: #1f2937;
+    }
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-top: 0;
+    }
+    form {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    input,
+    select,
+    button {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 15px;
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th,
+    td {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #f1f5f9;
+    }
+    tr:nth-child(even) {
+      background: #f9fafb;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <h1>Pendaftaran Lomba Domino Hari Bapak GKE 2025</h1>
-  <h1>CARES GKE TAMIANG LAYANG UTARA</h1>
+  <div class="container">
+    <h1>Pendaftaran Lomba Domino Hari Bapak GKE 2025</h1>
+    <h1>CARES GKE TAMIANG LAYANG UTARA</h1>
 
- <form action="https://script.google.com/macros/s/AKfycbYOUR_EXEC_URL/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-  <input name="nama" placeholder="Nama peserta" required>
-  <select name="jemaat" required>
-    <option value="">-- Pilih Asal Jemaat --</option>
-    <option>Jemaat GKE Yerusalem Tamiang Layang</option>
-    <option>Jemaat GKE Sumur</option>
-    <option>Jemaat GKE Jaweten</option>
-    <option>Jemaat GKE Karang Langit</option>
-    <option>Jemaat GKE Katambung</option>
-    <option>Jemaat GKE Haringen</option>
-  </select>
-  <button type="submit">Tambah</button>
-</form>
+    <!-- 🟩 FORM PENDAFTARAN -->
+    <form
+      action="https://script.google.com/macros/s/YOUR_EXEC_URL/exec"
+      method="POST"
+      target="hidden_iframe"
+      onsubmit="return kirimData()"
+      id="form"
+    >
+      <input name="nama" id="nama" placeholder="Nama peserta" required />
+      <select name="jemaat" id="jemaat" required>
+        <option value="">-- Pilih Asal Jemaat --</option>
+        <option>Jemaat GKE Yerusalem Tamiang Layang</option>
+        <option>Jemaat GKE Sumur</option>
+        <option>Jemaat GKE Jaweten</option>
+        <option>Jemaat GKE Karang Langit</option>
+        <option>Jemaat GKE Katambung</option>
+        <option>Jemaat GKE Haringen</option>
+      </select>
+      <button type="submit">Tambah</button>
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
 
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    <!-- 🟦 TABEL PESERTA -->
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Asal Jemaat</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr>
+          <td colspan="3" style="text-align:center;color:#9ca3af;">
+            Memuat data...
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<script>
-let submitted = false;
-document.querySelector('form').addEventListener('submit', function() {
-  alert("Data terkirim! Silakan refresh halaman.");
-});
-</script>
+  <script>
+    // GANTI DENGAN URL SCRIPT KAMU
+    const SCRIPT_URL =
+      "https://corsproxy.io/?https://script.google.com/macros/s/YOUR_EXEC_URL/exec";
 
+    // Fungsi tampilkan data dari Google Sheets
+    async function muatData() {
+      const tbody = document.getElementById("tbody");
+      tbody.innerHTML =
+        "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Memuat data...</td></tr>";
 
-  <table>
-    <thead>
-      <tr><th>No</th><th>Nama</th><th>Asal Jemaat</th></tr>
-    </thead>
-    <tbody id="tbody">
-      <tr><td colspan="3" style="text-align:center;color:#9ca3af;">Memuat data...</td></tr>
-    </tbody>
-  </table>
-</div>
+      try {
+        const res = await fetch(SCRIPT_URL);
+        const data = await res.json();
 
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec";
+        if (!data.length) {
+          tbody.innerHTML =
+            "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Belum ada peserta.</td></tr>";
+          return;
+        }
 
-const form = document.getElementById("form");
-const nama = document.getElementById("nama");
-const jemaat = document.getElementById("jemaat");
-const tbody = document.getElementById("tbody");
-
-async function muatData() {
-  tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Memuat data...</td></tr>";
-  try {
-    const res = await fetch(SCRIPT_URL);
-    const data = await res.json();
-    if (!data.length) {
-      tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Belum ada peserta.</td></tr>";
-      return;
+        tbody.innerHTML = data
+          .map(
+            (d, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${d.nama}</td>
+            <td>${d.jemaat}</td>
+          </tr>`
+          )
+          .join("");
+      } catch (err) {
+        tbody.innerHTML =
+          "<tr><td colspan='3' style='text-align:center;color:red;'>Gagal memuat data.</td></tr>";
+        console.error("Gagal memuat data:", err);
+      }
     }
-    tbody.innerHTML = data.map((d,i)=>`
-      <tr>
-        <td>${i+1}</td>
-        <td>${d.nama}</td>
-        <td>${d.jemaat}</td>
-      </tr>`).join('');
-  } catch (err) {
-    console.error("Gagal memuat data:", err);
-    tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:red;'>Gagal memuat data</td></tr>";
-  }
-}
 
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzijzmHdyCfeXJYS3e_QQZIheNM12EdOyV4BXr_48CsYsLXl5M7rxnG35ChW8E6ijPNhg/exec"; // pakai URL lama (yang ke Google Sheet langsung)
-const form = document.getElementById("form");
-const nama = document.getElementById("nama");
-const jemaat = document.getElementById("jemaat");
-const tbody = document.getElementById("tbody");
-
-async function muatData() {
-  try {
-    const res = await fetch(SCRIPT_URL);
-    const data = await res.json();
-    if (!data.length) {
-      tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#9ca3af;'>Belum ada peserta.</td></tr>";
-      return;
+    // Fungsi kirim data (tanpa reload halaman)
+    function kirimData() {
+      alert("Data berhasil dikirim! Tunggu 3 detik lalu refresh halaman.");
+      setTimeout(() => {
+        muatData();
+      }, 3000);
+      return true; // lanjutkan submit form normal
     }
-    tbody.innerHTML = data.map((d,i)=>`
-      <tr>
-        <td>${i+1}</td>
-        <td>${d.nama}</td>
-        <td>${d.jemaat}</td>
-      </tr>`).join('');
-  } catch (err) {
-    tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;color:#ef4444;'>Gagal memuat data</td></tr>";
-    console.error("Gagal memuat data:", err);
-  }
-}
 
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const data = { nama: nama.value.trim(), jemaat: jemaat.value };
-
-  // ✅ Mode no-cors supaya tidak diblokir browser
-  fetch(SCRIPT_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `nama=${encodeURIComponent(data.nama)}&jemaat=${encodeURIComponent(data.jemaat)}`
-  });
-
-  alert("Data berhasil dikirim! Silakan refresh halaman.");
-  form.reset();
-});
-
-muatData();
-</script>
-
-
-
-muatData();
-</script>
+    // Panggil data awal
+    muatData();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
