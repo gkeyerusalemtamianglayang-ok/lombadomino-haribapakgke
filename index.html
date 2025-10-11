@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pendaftaran Lomba Domino - Hari Bapak GKE - Cares GKE Talaut - 2025</title>
+<link rel="icon" href="data:,">
 <style>
   body {
     font-family: sans-serif;
@@ -11,7 +12,6 @@
     margin: 0;
     color: #1f2937;
   }
-
   .container {
     max-width: 720px;
     margin: 30px auto;
@@ -22,38 +22,34 @@
     position: relative;
     overflow: hidden;
   }
-
-  /* 🔹 Logo transparan lembut di header */
   .logo-bg {
     display: block;
     margin: 0 auto 10px auto;
-    width: 140px; /* ukuran logo */
+    width: 140px;
     height: auto;
-    opacity: 0.35; /* transparansi agar tidak ganggu teks */
+    opacity: 0.35;
     pointer-events: none;
   }
-
+  .pamflet {
+    width: 100%;
+    border-radius: 12px;
+    margin: 15px 0;
+    display: block;
+  }
   h1 {
     text-align: center;
     margin: 0 0 10px;
-    position: relative;
-    z-index: 1;
   }
-
   form {
     display: grid;
     gap: 10px;
     margin: 18px 0;
-    position: relative;
-    z-index: 1;
   }
-
   input, select, button {
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #d1d5db;
   }
-
   button {
     background: #2563eb;
     color: #fff;
@@ -61,29 +57,20 @@
     border: none;
     cursor: pointer;
   }
-
-  button:hover {
-    opacity: .9;
-  }
-
-  h3 {
-    margin-top: 24px;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
+  button:hover { opacity: .9; }
+  h3 { margin-top: 24px; text-align: center; }
 </style>
 </head>
-
 <body>
 <div class="container">
-  <!-- 🔹 Logo GKE transparan -->
   <img class="logo-bg" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/LOGO_GKE.png" alt="Logo GKE">
-
   <h1>Pendaftaran Lomba Domino Hari Bapak GKE 2025</h1>
   <h1>CARES GKE TAMIANG LAYANG UTARA</h1>
 
-  <form action="https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec"
+  <!-- 🔹 PAMFLET -->
+  <img src="pamflet.jpg" alt="Pamflet Hari Bapak GKE" class="pamflet" loading="lazy">
+
+  <form action="https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec" 
         method="POST" target="hidden_iframe" onsubmit="return kirim();">
     <input name="nama" placeholder="Nama peserta" required />
     <select name="jemaat" required>
@@ -104,7 +91,8 @@
   <h3>Daftar Peserta</h3>
   <iframe
     src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS2jAeQmwwxB4Jx3YYVkqGi664DJ9K00Q-pmoAySpxMur2sJ1Hu9p2lpf73GPDlOk5mFsIRdTSp5Od_/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
-    style="width:100%;height:420px;border:1px solid #e5e7eb;border-radius:12px;position:relative;z-index:1;"></iframe>
+    style="width:100%;height:420px;border:1px solid #e5e7eb;border-radius:12px;"
+    loading="lazy"></iframe>
 </div>
 
 <script>
