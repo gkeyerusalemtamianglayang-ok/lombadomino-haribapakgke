@@ -23,19 +23,29 @@
   <h1>Pendaftaran Lomba Domino Hari Bapak GKE 2025</h1>
   <h1>CARES GKE TAMIANG LAYANG UTARA</h1>
 
-  <form id="form">
-    <input id="nama" placeholder="Nama peserta" required />
-    <select id="jemaat" required>
-      <option value="">-- Pilih Asal Jemaat --</option>
-      <option>Jemaat GKE Yerusalem Tamiang Layang</option>
-      <option>Jemaat GKE Sumur</option>
-      <option>Jemaat GKE Jaweten</option>
-      <option>Jemaat GKE Karang Langit</option>
-      <option>Jemaat GKE Katambung</option>
-      <option>Jemaat GKE Haringen</option>
-    </select>
-    <button type="submit">Tambah</button>
-  </form>
+ <form action="https://script.google.com/macros/s/AKfycbYOUR_EXEC_URL/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+  <input name="nama" placeholder="Nama peserta" required>
+  <select name="jemaat" required>
+    <option value="">-- Pilih Asal Jemaat --</option>
+    <option>Jemaat GKE Yerusalem Tamiang Layang</option>
+    <option>Jemaat GKE Sumur</option>
+    <option>Jemaat GKE Jaweten</option>
+    <option>Jemaat GKE Karang Langit</option>
+    <option>Jemaat GKE Katambung</option>
+    <option>Jemaat GKE Haringen</option>
+  </select>
+  <button type="submit">Tambah</button>
+</form>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+<script>
+let submitted = false;
+document.querySelector('form').addEventListener('submit', function() {
+  alert("Data terkirim! Silakan refresh halaman.");
+});
+</script>
+
 
   <table>
     <thead>
@@ -128,6 +138,7 @@ muatData();
 </script>
 </body>
 </html>
+
 
 
 
