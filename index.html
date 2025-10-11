@@ -25,7 +25,7 @@
 
   <!-- POST langsung ke Apps Script -->
   <form
-    action="https://script.google.com/macros/s/AKfycbzijzmHdyCfeXJYS3e_QQZIheNM12EdOyV4BXr_48CsYsLXl5M7rxnG35ChW8E6ijPNhg/exec"
+    action="https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec"
     method="POST"
     target="hidden_iframe"
     onsubmit="return kirimData();">
@@ -55,7 +55,7 @@
 
 <script>
   // URL untuk BACA data (lewat proxy agar aman dari CORS)
-  const READ_URL = "https://corsproxy.io/?https://script.google.com/macros/s/AKfycbzijzmHdyCfeXJYS3e_QQZIheNM12EdOyV4BXr_48CsYsLXl5M7rxnG35ChW8E6ijPNhg/exec";
+  const READ_URL = "https://corsproxy.io/?https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec";
 
   async function muatData(){
     const tbody = document.getElementById("tbody");
@@ -90,4 +90,5 @@
 </script>
 </body>
 </html>
+
 
