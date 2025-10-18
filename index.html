@@ -3,26 +3,25 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pendaftaran Lomba Domino - Hari Bapak GKE - Cares GKE Talaut - 2025</title>
+<title>Lomba Vocal Solo - Hari Bapak GKE 2025 - Cares GKE Talaut</title>
 <link rel="icon" href="data:,">
 
 <style>
   body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #fff8e7, #f9fafb);
+    background: linear-gradient(180deg, #e0f2ff, #f9fbff);
     margin: 0;
-    color: #1f2937;
+    color: #1e3a8a;
   }
 
   .container {
-    max-width: 740px;
-    margin: 40px auto;
+    max-width: 720px;
+    margin: 50px auto;
     background: #ffffff;
-    padding: 28px;
-    border-radius: 18px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    position: relative;
-    overflow: hidden;
+    padding: 36px;
+    border-radius: 22px;
+    box-shadow: 0 10px 40px rgba(37, 99, 235, 0.1);
+    text-align: center;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease, transform 1s ease;
@@ -32,203 +31,98 @@
     transform: translateY(0);
   }
 
-  /* 🌿 Logo */
   .logo-bg {
     display: block;
     margin: 0 auto 10px auto;
-    width: 140px;
+    width: 150px;
     opacity: 0.4;
-    pointer-events: none;
     animation: fadein 2s ease;
-  }
-
-  /* 🪧 Pamflet */
-  .pamflet {
-    width: 100%;
-    border-radius: 12px;
-    margin: 15px 0;
-    display: block;
-    opacity: 0;
-    transform: scale(0.98);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  .pamflet.show {
-    opacity: 1;
-    transform: scale(1);
   }
 
   h1 {
-    text-align: center;
-    margin: 0 0 10px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.7rem;
+    margin-top: 10px;
     animation: fadein 2s ease;
   }
 
-  /* 💎 FORM CARD (bingkai keemasan elegan) */
-  .form-card {
-    background: linear-gradient(145deg, #fffdf7, #f9f5e7);
-    border: 1.5px solid #e6c97c;
-    border-radius: 18px;
-    padding: 28px;
-    margin: 25px 0;
-    box-shadow:
-      0 8px 20px rgba(212,175,55,0.15),
-      inset 0 1px 4px rgba(255,255,255,0.6);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .form-card::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(251,191,36,0.08), transparent 70%);
-    transform: rotate(25deg);
-    pointer-events: none;
-  }
-
-  .form-card:hover {
-    box-shadow:
-      0 10px 25px rgba(212,175,55,0.25),
-      inset 0 1px 4px rgba(255,255,255,0.5);
-    transform: translateY(-3px);
-    transition: all 0.3s ease;
-  }
-
-  /* ✏️ Input & Select Field */
-  form {
-    display: grid;
-    gap: 15px;
-    position: relative;
-    z-index: 2;
-  }
-
-  input, select {
-    padding: 12px;
-    border-radius: 10px;
-    border: 1.8px solid #d4af37;
-    background: #fffdf5;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    outline: none;
-  }
-
-  input:focus, select:focus {
-    border-color: #fbbf24;
-    background: #fffbe6;
-    box-shadow: 0 0 12px rgba(251,191,36,0.4);
-  }
-
-  input::placeholder {
-    color: #6b7280;
-  }
-
-  select {
-    color: #111827;
-  }
-
-  /* 🌈 Tombol */
-  button {
-    padding: 12px;
-    background: linear-gradient(90deg, #d4af37, #e8c547);
-    color: #fff;
+  h2 {
+    color: #1e40af;
     font-weight: 600;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 0.3px;
+    margin-top: 20px;
+    font-size: 1.2rem;
   }
 
-  button:hover {
-    background: linear-gradient(90deg, #b8911c, #d4af37);
-    transform: scale(1.03);
-    box-shadow: 0 4px 15px rgba(212,175,55,0.35);
+  .status {
+    margin: 30px 0;
+    padding: 20px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #f0f8ff, #e6f1ff);
+    border: 1.5px solid #93c5fd;
+    box-shadow:
+      0 8px 20px rgba(59,130,246,0.1),
+      inset 0 1px 4px rgba(255,255,255,0.7);
+    color: #1e3a8a;
+    font-size: 1.1rem;
   }
 
-  h3 {
-    margin-top: 24px;
-    text-align: center;
+  .verse {
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #334155;
+    margin: 25px auto;
+    max-width: 600px;
   }
 
-  iframe {
-    width: 100%;
-    height: 420px;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  .blessing {
+    margin-top: 30px;
+    padding: 18px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: #fff;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 15px rgba(37,99,235,0.25);
   }
 
   @keyframes fadein {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
-  #msg {
-    text-align: center;
-    color: green;
-    font-weight: 600;
-  }
 </style>
 </head>
 
 <body>
-<div class="container" id="content">
-  <img class="logo-bg" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/LOGO_GKE.png" alt="Logo GKE">
+  <div class="container" id="content">
+    <img class="logo-bg" src="https://upload.wikimedia.org/wikipedia/commons/2/2e/LOGO_GKE.png" alt="Logo GKE">
 
-  <h1>Pendaftaran Lomba Domino Hari Bapak GKE 2025</h1>
-  <h1>CARES GKE TAMIANG LAYANG UTARA</h1>
+    <h1>Lomba Vocal Solo - Hari Bapak GKE 2025</h1>
+    <h1>CARES GKE TAMIANG LAYANG UTARA</h1>
 
-  <!-- 🔹 Pamflet -->
-  <img src="pamflet.jpg" alt="Pamflet Hari Bapak GKE" class="pamflet" id="pamflet" loading="lazy">
+    <div class="status">
+      <strong>🎤 Sedang dalam proses pertandingan...</strong><br>
+      Mohon doa dan dukungan untuk seluruh peserta lomba Vocal Solo.
+    </div>
 
-  <!-- 💎 Form dengan Bingkai Keemasan -->
-  <div class="form-card">
-    <form action="https://script.google.com/macros/s/AKfycbwb5mVy2ZkMNypF1EtYsreBwbfMD7aiO-nWAgEncxlY9oDjoVfID9J6bzbYGJEx37dubw/exec" 
-          method="POST" target="hidden_iframe" onsubmit="return kirim();">
-      <input name="nama" placeholder="🧍 Nama peserta" required />
-      <select name="jemaat" required>
-        <option value="">🏠 -- Pilih Asal Jemaat --</option>
-        <option>Jemaat GKE Yerusalem Tamiang Layang</option>
-        <option>Jemaat GKE Sumur</option>
-        <option>Jemaat GKE Jaweten</option>
-        <option>Jemaat GKE Karang Langit</option>
-        <option>Jemaat GKE Katambung</option>
-        <option>Jemaat GKE Haringen</option>
-      </select>
-      <button type="submit">✨ Daftar Sekarang</button>
-    </form>
+    <div class="verse">
+      <p>“Apapun juga yang kamu perbuat, perbuatlah dengan segenap hatimu seperti untuk Tuhan dan bukan untuk manusia.”</p>
+      <p><strong>Kolose 3:23</strong></p>
+    </div>
+
+    <div class="blessing">
+      🌿 Tetaplah berjuang dengan sukacita, bernyanyilah bukan untuk menang,
+      tetapi untuk memuliakan Tuhan melalui talenta yang Ia percayakan kepadamu.  
+      <br><br>
+      💙 Selamat berjuang & selamat menantikan hasil terbaik!
+    </div>
   </div>
 
-  <iframe name="hidden_iframe" style="display:none;"></iframe>
-  <p id="msg"></p>
-
-  <h3>📋 Daftar Peserta</h3>
-  <iframe
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS2jAeQmwwxB4Jx3YYVkqGi664DJ9K00Q-pmoAySpxMur2sJ1Hu9p2lpf73GPDlOk5mFsIRdTSp5Od_/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"
-    loading="lazy"></iframe>
-
-  <h3>📊 Rekap Peserta per Jemaat</h3>
-  <iframe
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS2jAeQmwwxB4Jx3YYVkqGi664DJ9K00Q-pmoAySpxMur2sJ1Hu9p2lpf73GPDlOk5mFsIRdTSp5Od_/pubhtml?gid=1922224848&single=true"
-    loading="lazy"></iframe>
-</div>
-
 <script>
-function kirim(){
-  document.getElementById('msg').textContent =
-    '✅ Data berhasil dikirim! Tunggu beberapa detik lalu refresh untuk melihat hasil.';
-  return true;
-}
-
-window.addEventListener('load', () => {
-  document.getElementById('content').classList.add('show');
-  setTimeout(() => {
-    document.getElementById('pamflet').classList.add('show');
-  }, 600);
-});
+  window.addEventListener('load', () => {
+    document.getElementById('content').classList.add('show');
+  });
 </script>
 </body>
 </html>
